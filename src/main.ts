@@ -13,17 +13,15 @@ type mapReduceCallback = (
 
 export type callbackOfMap = (entry: tupleOfKeyAndValue, index: number, self: anyObject) => anyObject
 
-
 export function objectMap(callback: callbackOfMap): anyObject {
-
-  const entries: Array<tupleOfKeyAndValue> = (<anyObject>Object).entries(this);
+  const entries: Array<tupleOfKeyAndValue> = (<anyObject>Object).entries(this)
 
   const reduceCallback: mapReduceCallback = (acc, entry, idx, self) => {
     const result: anyObject = {
-    ...acc,
-    ...callback(entry, idx, self)
+      ...acc,
+      ...callback(entry, idx, self),
     }
-    return result;
+    return result
   }
   const initial: anyObject = {}
   return entries.reduce(reduceCallback, initial)

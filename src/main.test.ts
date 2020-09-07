@@ -1,5 +1,5 @@
 import { objectMap as mapper } from './main'
-import { anyObject, tupleOfKeyAndValue , callbackOfMap} from './main'
+import { anyObject, tupleOfKeyAndValue, callbackOfMap } from './main'
 
 export {}
 
@@ -14,8 +14,8 @@ Object.prototype.map = mapper
 describe('function map', () => {
   it('should check whether callback works correctly', () => {
     interface Person {
-      name: string,
-      age: number,
+      name: string
+      age: number
       isStudent: boolean
     }
 
@@ -25,36 +25,35 @@ describe('function map', () => {
     const person: Person = {
       name: 'Cindy',
       age: 22,
-      isStudent: true
+      isStudent: true,
     }
 
-    const newName: changedValueName = "Emily"
-    const newKey: changedKeyisStudent = "isSinger"
+    const newName: changedValueName = 'Emily'
+    const newKey: changedKeyisStudent = 'isSinger'
 
     const result1 = person.map(([key, val]: tupleOfKeyAndValue) => {
-      if ( val === person.name) {
-        return { [key]: newName}
+      if (val === person.name) {
+        return { [key]: newName }
       }
-      return {};
+      return {}
     })
 
     const result2 = person.map(([key, val]: tupleOfKeyAndValue) => {
-      if ( key === "isStudent") {
-        return { [newKey]: val}
+      if (key === 'isStudent') {
+        return { [newKey]: val }
       }
-      return {};
+      return {}
     })
 
-    const { name } = result1;
+    const { name } = result1
     expect(name).toBe(newName)
-    expect(Object.keys(result2).filter(el => el === newKey)).toEqual([newKey])
-
-  });
+    expect(Object.keys(result2).filter((el) => el === newKey)).toEqual([newKey])
+  })
 
   it('should return empty object if callback is wrong', () => {
     interface Person {
-      name: string,
-      age: number,
+      name: string
+      age: number
       isStudent: boolean
     }
 
@@ -65,18 +64,18 @@ describe('function map', () => {
     const person: Person = {
       name: 'Cindy',
       age: 22,
-      isStudent: true
+      isStudent: true,
     }
 
-    const newName: changedValueName = "Emily"
+    const newName: changedValueName = 'Emily'
 
-    const searchedName: searchedName = "Poly"
+    const searchedName: searchedName = 'Poly'
 
     const result = person.map(([key, val]: tupleOfKeyAndValue) => {
-      if ( val === searchedName) {
-        return { [key]: newName}
+      if (val === searchedName) {
+        return { [key]: newName }
       }
-      return {};
+      return {}
     })
 
     const expectedObject = {}
